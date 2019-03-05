@@ -1,28 +1,22 @@
 <template>
   <div id="wrapper">
-    <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
-    <main>
-      <div class="left-side">
-        <span class="title">
-          Welcome to your new project!
-        </span>
-        <system-information></system-information>
-      </div>
-
-      <div class="right-side">
+    <main class="center">
+      <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
+      <div class="center">
         <div class="doc">
           <div class="title">Getting Started</div>
           <p>
-            electron-vue comes packed with detailed documentation that covers everything from
-            internal configurations, using the project structure, building your application,
-            and so much more.
+            Bastiat comes packed with a trading journal and full fledged interface that
+            interacts with popular exchanges such as Bitmex. It allows you to track your
+            trades and set configurations for scalping as well as provide robust
+            documentation for your trades.
           </p>
-          <button @click="open('https://simulatedgreg.gitbooks.io/electron-vue/content/')">Read the Docs</button><br><br>
+          <button class="alt" @click="navigate('journal')">Journal</button>
+          <button class="alt" @click="navigate('trading-page')">Trading Page</button>
         </div>
         <div class="doc">
-          <div class="title alt">Other Documentation</div>
-          <button class="alt" @click="open('https://electron.atom.io/docs/')">Electron</button>
-          <button class="alt" @click="open('https://vuejs.org/v2/guide/')">Vue.js</button>
+          <div class="title alt">Settings</div>
+          <button class="alt" @click="navigate('settings')">Settings</button>
         </div>
       </div>
     </main>
@@ -30,14 +24,13 @@
 </template>
 
 <script>
-  import SystemInformation from './LandingPage/SystemInformation'
+  import router from '../router/index.js'
 
   export default {
     name: 'landing-page',
-    components: { SystemInformation },
     methods: {
-      open (link) {
-        this.$electron.shell.openExternal(link)
+      navigate(page) {
+        router.push({ name: page })
       }
     }
   }
@@ -75,13 +68,18 @@
   main {
     display: flex;
     justify-content: space-between;
+    width: 50%;
+    margin-left: 25%;
   }
 
   main > div { flex-basis: 50%; }
 
-  .left-side {
+  .center {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
   .welcome {
